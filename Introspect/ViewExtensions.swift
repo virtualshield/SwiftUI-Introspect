@@ -88,6 +88,13 @@ extension View {
     public func introspectTextField(customize: @escaping (UITextField) -> ()) -> some View {
         return introspect(selector: TargetViewSelector.siblingContaining, customize: customize)
     }
+
+    /// Finds a `UITextView` from a `SwiftUI.TextEditor`
+    @available(iOS 14.0, macOS 11.0, macCatalyst 14.0, *)
+    @available(tvOS, unavailable)
+    public func introspectTextEditor(customize: @escaping (UITextView) -> ()) -> some View {
+        return introspect(selector: TargetViewSelector.siblingContaining, customize: customize)
+    }
     
     /// Finds a `UISwitch` from a `SwiftUI.Toggle`
     @available(tvOS, unavailable)

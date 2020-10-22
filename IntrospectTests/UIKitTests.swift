@@ -159,6 +159,19 @@ private struct TextFieldTestView: View {
     }
 }
 
+@available(iOS 14.0, macOS 11.0, macCatalyst 14.0, *)
+@available(tvOS, unavailable)
+private struct TextEditorTestView: View {
+    let spy: () -> Void
+    @State private var textEditorValue = ""
+    var body: some View {
+        TextEditor(text: $textEditorValue)
+        .introspectTextEditor { textField in
+            self.spy()
+        }
+    }
+}
+
 @available(iOS 13.0, tvOS 13.0, macOS 10.15.0, *)
 @available(tvOS, unavailable)
 private struct ToggleTestView: View {
@@ -301,6 +314,18 @@ class UIKitTests: XCTestCase {
         
         let expectation = XCTestExpectation()
         let view = TextFieldTestView(spy: {
+            expectation.fulfill()
+        })
+        TestUtils.present(view: view)
+        wait(for: [expectation], timeout: 1)
+    }
+
+    @available(iOS 14.0, macOS 11.0, macCatalyst 14.0, *)
+    @available(tvOS, unavailable)
+    func testTextEditor() {
+
+        let expectation = XCTestExpectation()
+        let view = TextEditorTestView(spy: {
             expectation.fulfill()
         })
         TestUtils.present(view: view)
