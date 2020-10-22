@@ -9,6 +9,8 @@ Changelog
    [#55](https://github.com/siteline/SwiftUI-Introspect/issues/55)
  - Fixed availability annotations on macOS
    [#46](https://github.com/siteline/SwiftUI-Introspect/issues/46)
+ - Added `.introspectTextEditor()` for iOS 14 and macOS 11.0
+   [#52](https://github.com/siteline/SwiftUI-Introspect/pull/52)
 
 ## [0.1.0]
 
